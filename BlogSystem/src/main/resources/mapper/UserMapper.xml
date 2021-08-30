@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qin.boot.dao.UserMapper">
+    <insert id="addUser" parameterType="User">
+        insert into t_user(userId,username,password,introduction) values(#{userId},#{username},#{password},#{introduction})
+    </insert>
+    <update id="updateUser" parameterType="User">
+        update t_user set password=#{password} where userId=#{userId}
+    </update>
+    <delete id="deleteUserAllArticles">
+        delete from t_article where userId=#{id};
+
+    </delete>
+    <select id="queryUserById" resultType="User">
+        select * from t_user where userId=#{id}
+    </select>
+    <select id="examLoginIn" resultType="User">
+        select * from t_user where username=#{username} and password=#{password};
+    </select>
+    <select id="queryUserByName" resultType="User">
+        select * from t_user where username=#{username}
+    </select>
+    <select id="queryAllArticles" resultType="Article">
+        select * from t_article where userId=#{userId}
+    </select>
+</mapper>

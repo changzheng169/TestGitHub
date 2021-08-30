@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询文章</title>
+    <script>
+        function checkForm(){
+            if(document.form.title.value==""||document.form.userId.value==""){
+                alert("用户ID或文章名不能为空")
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div align="center">
+        <span style="color:black; font-family: 华文楷体;font-size: 65px">查询博客</span><br/>
+      <form action="/queryArticle" method="post" name="form" onsubmit="return checkForm();">
+          <table>
+            <tr>
+               <td style="color:black;font-family: 华文楷体;font-size: 25px">博主id</td>
+                <td><input type="number" name="userId" min="1" max="9999"></td>
+            </tr>
+              <tr>
+                  <td style="color:black;font-family: 华文楷体;font-size: 25px">文章名</td>
+                  <td><input type="text" name="title"></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td>
+                      <input type="submit" value="查询">
+                      <a href="/main.html">
+                          <input type="button" value="返回" onclick="window.location.href('/main.html')">
+                      </a>
+                  </td>
+              </tr>
+          </table>
+        <br/>
+          <textarea name="context" th:text="${article}" readonly rows="34" cols="142.5">暂无内容</textarea>
+      </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改文章</title>
+    <script>
+        function checkForm1(){
+            if(document.form1.userId.value==""||document.form1.articleId.value==""){
+                alert("所填项不能为空！")
+                return false;
+            }
+            return true;
+        }
+        function checkForm2(){
+            if(document.form2.context.value==""){
+                alert("内容不能为空！")
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="form1" action="/updateArticle" method="post" onsubmit=" return checkForm1()">
+        <div align="center">
+            <span style="color:black; font-family: 华文楷体;font-size: 65px">更改文章</span>
+            <table>
+                <tr>
+                    <td style="color:black;font-family: 华文楷体;font-size: 25px">博主id</td>
+                    <td><input type="number" name="userId" min="1" max="9999"></td>
+                </tr>
+                <tr>
+                    <td style="color:black;font-family: 华文楷体;font-size: 25px">文章id</td>
+                    <td><input type="number" name="articleId" min="1" max="9999"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color:red" th:text="${msg}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="查询">
+                        <a href="/main.html">
+                            <input type="button" value="返回" onclick="window.location.href('/main.html')">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <form name="form2" action="/updateSubmit" method="post" onsubmit="return checkForm2()" >
+        <div align="center">
+        作者id<input name="userId" readonly type="text" th:value="${userID}">
+        文章id<input name="articleId" readonly type="text" th:value="${articleID}">
+        文章名<input type="text" name="title" th:value="${title}">
+        <textarea name="context" rows="34" cols="142.5">[[${article}]]</textarea></br>
+             <input type="submit" value="更改"  >
+        </div>
+    </form>
+</body>
+</html>

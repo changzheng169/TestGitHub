@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>登录博客</title>
+</head>
+<body >
+<div id="login">
+    <form action="/login" method="post">
+        <div align="center">
+            <span style="color:black; font-family: 华文楷体;font-size: 65px">博客登录</span>
+            <table>
+                <tr>
+                    <td style="color:black;font-family: 华文楷体;font-size: 25px" >用户名</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td style="color:black;font-family: 华文楷体;font-size: 25px">密&nbsp;&nbsp; 码</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color:red" th:text="${msg}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="登录">
+                        <a href="/register">
+                            <input type="button" value="注册" onclick="window.location.href('/register')">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>

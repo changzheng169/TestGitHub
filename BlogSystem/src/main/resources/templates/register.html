@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>注册博客</title>
+    <script>
+        function checkForm(){
+            if(document.form.username.value==""||document.form.userId.value==""||document.form.password.value==""
+                ||document.form.introduction.value==""){
+                alert("所填项不能为空")
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="post" name="form" onsubmit="return checkForm()">
+        <div class="dd" align="center">
+            <span style="color:black; font-family: 华文楷体;font-size: 65px">注册博客账号</span>
+            <table>
+            <tr>
+                <td style="color:black;font-family: 华文楷体;font-size: 25px">用户id</td>
+                <td><input type="number" name="userId" min="1" max="9999"></td>
+            </tr>
+            <tr>
+                <td style="color:black;font-family: 华文楷体;font-size: 25px">用户名</td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td style="color:black;font-family: 华文楷体;font-size: 25px">密&nbsp;&nbsp;码</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>个人简介</td>
+                <td><textarea name="introduction"></textarea></td>
+            </tr>
+                <tr>
+                    <td></td>
+                    <td style="color:red" th:text="${msg}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="注册"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

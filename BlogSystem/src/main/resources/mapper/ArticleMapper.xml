@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qin.boot.dao.ArticleMapper">
+    <insert id="addArticle" parameterType="Article">
+        insert into t_article(articleId,title,context,userId) values(#{articleId},#{title},#{context},#{userId})
+    </insert>
+    <update id="updateArticle" parameterType="Article">
+        update t_article set context=#{context},title=#{title} where articleId=#{articleId};
+    </update>
+    <delete id="deleteArticle" >
+        delete from t_article where articleId=#{articleId}
+    </delete>
+    <select id="queryArticle" resultType="Article">
+        select * from t_article where articleId=#{articleId}
+    </select>
+    <select id="queryArticleByInfo" resultType="Article">
+        select * from t_article where title=#{title} and userId=#{userId}
+    </select>
+
+</mapper>

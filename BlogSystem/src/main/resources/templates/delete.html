@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>删除博客</title>
+    <script>
+        function checkForm(){
+            if(document.form.userId.value==""||document.form.articleId.value==""){
+                alert("所填项不能为空")
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="/delete" method="post" name="form" onsubmit="return checkForm();">
+      <div align="center">
+          <span style="color:black; font-family: 华文楷体;font-size: 65px">删除文章</span>
+          <table>
+              <tr>
+                  <td style="color:black;font-family: 华文楷体;font-size: 25px">用户id</td>
+                  <td><input type="number" name="userId" min="1" max="9999"></td>
+              </tr>
+              <tr>
+                  <td style="color:black;font-family: 华文楷体;font-size: 25px">文章id</td>
+                  <td><input type="number" name="articleId" min="1" max="9999"></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td style="color: red" th:text="${msg}"></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td>
+                      <input type="submit" value="删除">
+                      <a href="/main.html">
+                          <input type="button" value="返回" onclick="window.location.href('/main.html')">
+                      </a>
+                  </td>
+              </tr>
+          </table>
+      </div>
+    </form>
+</body>
+</html>

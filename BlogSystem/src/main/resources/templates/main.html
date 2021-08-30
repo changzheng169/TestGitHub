@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主界面</title>
+    <script>
+        function checkForm(){
+            if(document.ff.articleId.value==""||document.ff.userId.value==""||document.ff.title.value==""
+            ||document.ff.context.value==""){
+            alert("所填项不能为空")
+            return false;
+        }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div id="maxname" style="width:100%;height: 100%; margin:0" >
+    <div id="hname" >
+        <h1 style="margin-bottom:0; margin-top:0;text-align:center; font-family: 华文楷体;">博 客 主 页 面</h1>
+    </div>
+    <div id="menu" style="height:90%;width:15%;float:left;">
+       <span style="font-family:楷体;font-size: 50px">菜单</span>
+       <ul>
+           <li><a href="/queryArticle">查询博客</a></li><br/>
+           <li><a href="/updateArticle">更改博客</a></li><br/>
+           <li><a href="/delete">删除博客</a></li><br/>
+           <li><a href="/cancel">删除所有博客</a></li><br/>
+           <li><a href="/updatepwd">修改密码</a></li><br/>
+           <li><a href="/exit">退出登录</a></li><br/>
+       </ul>
+    </div>
+    <div id="content" style="height:90%;width:70%;float:left;">
+       <form  action="/addArticle" method="post" name="ff" onsubmit="return checkForm();">
+           <table>
+               <tr>
+                   <td style="font-family: 华文楷体;font-size: 25px">articleId&nbsp;&nbsp;<input type="number" name="articleId" min="1" max="9999"></td>
+               </tr>
+               <tr>
+                   <td style="font-family: 华文楷体;font-size: 25px">userId &nbsp;&nbsp;<input type="number" name="userId" min="1" max="9999"></td>
+               </tr>
+               <tr>
+                   <td style="font-family: 华文楷体;font-size: 25px">title&nbsp;&nbsp;<input type="text" name="title"></td>
+               </tr>
+               <tr>
+                   <td style="font-family: 华文楷体;font-size: 25px">context:</td>
+               </tr>
+               <tr>
+                   <td><textarea name="context" rows="30" cols="142.5"></textarea></td>
+               </tr>
+
+           </table>
+               <div style="color: red;float:left" th:text="${msg}"></div>
+           <div style="float:right"><input type="submit" value="提交"></div>
+       </form>
+    </div>
+    <div id="right" style="height:90%;width:15%;float:right;">
+        <span style="font-family: 华文楷体;font-size: 25px">博客主信息</span>
+        <ul style="list-style-type: none">
+            <li>用户id:<span>[[${session.loginUser.userId}]]</span></li>
+            <li>用户名:<span >[[${session.loginUser.username}]]</span></li>
+            <li>个人简介:<span>[[${session.loginUser.introduction}]]</span></li>
+        </ul>
+        <span style="font-family:华文楷体;font-size: 25px">文章</span>
+        <ul style="list-style-type: none" th:each="article:${articles}">
+            <li> [[${article.articleId}]]：[[${article.title}]]</li>
+        </ul>
+        <form action="/success" method="post">
+            <div style="float:right"><input type="submit" value="刷新文章"></div>
+        </form>
+    </div>
+    <div id="bool" style="clear:both;text-align:center;">
+        博客主:[[${session.loginUser.username}]]
+    </div>
+</div>
+</body>
+</html>
+</body>
+</html>
